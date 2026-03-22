@@ -1,0 +1,5 @@
+load --init /home/expos/myexpos/workdir/stages/stage14/oddnum100.xsm
+load --exec /home/expos/myexpos/workdir/stages/stage14/even.xsm
+load --module 7 /home/expos/myexpos/workdir/stages/stage13/Assi_1/assg1_bootModule.xsm
+load --int=timer /home/expos/myexpos/workdir/stages/stage13/Assi_1/assg1_timer.xsm
+load --idle /home/expos/myexpos/workdir/stages/stage12/idle.xsm

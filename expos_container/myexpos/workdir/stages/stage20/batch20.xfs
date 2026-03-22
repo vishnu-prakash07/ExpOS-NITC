@@ -1,0 +1,8 @@
+load --os ../workdir/stages/stage20/os_startup_module.xsm
+load --int=10 ../workdir/stages/stage20/exit.xsm
+load --int=8 ../workdir/stages/stage20/fork.xsm
+load --module 1 ../workdir/stages/stage20/MOD_1.xsm
+load --module 5 ../workdir/stages/stage20/scheduler.xsm
+load --module 7 ../workdir/stages/stage20/MOD_7(boot).xsm
+load --module 2 ../workdir/stages/stage20/mod2.xsm
+load --init ../workdir/stages/stage20/ASSI1/init.xsm

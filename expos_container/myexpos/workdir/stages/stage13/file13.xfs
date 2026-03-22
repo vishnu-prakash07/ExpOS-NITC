@@ -1,0 +1,2 @@
+load --os /home/expos/myexpos/workdir/stages/stage13/os_startup_stage13.xsm
+load --module 7 /home/expos/myexpos/workdir/stages/stage13/boot_module_stage13.xsm

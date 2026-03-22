@@ -1,0 +1,7 @@
+load --os /home/expos/myexpos/workdir/stages/stage13/os_startup_stage13.xsm
+load --int=10 /home/expos/myexpos/workdir/stages/stage14/INT_10.xsm  
+load --module 5 /home/expos/myexpos/workdir/stages/stage14/module_5.xsm
+load --module 7 /home/expos/myexpos/workdir/stages/stage14/module_7.xsm
+load --int=timer /home/expos/myexpos/workdir/stages/stage14/sample_timer.xsm 
+load --idle /home/expos/myexpos/workdir/stages/stage12/idle.xsm 
+load --init /home/expos/myexpos/workdir/stages/stage12/numbers100.xsm

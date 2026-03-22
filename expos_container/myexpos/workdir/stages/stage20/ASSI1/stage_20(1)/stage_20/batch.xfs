@@ -1,0 +1,20 @@
+fdisk
+load --os $HOME/myexpos/spl/spl_progs/stage_20/os_startup_module.xsm
+load --library $HOME/myexpos/expl/library.lib
+load --init $HOME/myexpos/expl/expl_progs/stage_20/linklist.xsm
+load --idle $HOME/myexpos/expl/samples/idle.xsm
+load --int=6 $HOME/myexpos/spl/spl_progs/stage_20/int6.xsm
+load --int=7 $HOME/myexpos/spl/spl_progs/stage_20/int7.xsm
+load --int=9 $HOME/myexpos/spl/spl_progs/stage_20/int9.xsm
+load --int=8 $HOME/myexpos/spl/spl_progs/stage_20/int8.xsm
+load --int=10 $HOME/myexpos/spl/spl_progs/stage_20/int10.xsm
+load --int=timer $HOME/myexpos/spl/spl_progs/stage_20/timer.xsm
+load --int=console $HOME/myexpos/spl/spl_progs/stage_20/console_interrupt_handler.xsm
+load --int=disk $HOME/myexpos/spl/spl_progs/stage_20/disk_interrupt_handler.xsm
+load --module 0 $HOME/myexpos/spl/spl_progs/stage_20/mod0.xsm
+load --module 1 $HOME/myexpos/spl/spl_progs/stage_20/mod1.xsm
+load --module 2 $HOME/myexpos/spl/spl_progs/stage_20/mod2.xsm
+load --module 4 $HOME/myexpos/spl/spl_progs/stage_20/mod4.xsm
+load --module 5 $HOME/myexpos/spl/spl_progs/stage_20/scheduler.xsm
+load --module 7 $HOME/myexpos/spl/spl_progs/stage_20/boot_module.xsm
+load --exhandler $HOME/myexpos/spl/spl_progs/stage_20/exception.xsm

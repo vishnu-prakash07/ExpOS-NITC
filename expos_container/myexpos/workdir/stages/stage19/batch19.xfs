@@ -1,0 +1,16 @@
+load --module 5 /home/expos/myexpos/workdir/stages/stage15/scheduler.xsm
+load --int=timer /home/expos/myexpos/workdir/stages/stage15/timer.xsm
+load --int=7 /home/expos/myexpos/workdir/stages/stage15/int7.xsm 
+load --int=10 /home/expos/myexpos/workdir/stages/stage15/int10.xsm
+load --int=console /home/expos/myexpos/workdir/stages/stage16/console_int.xsm
+load --int=6 /home/expos/myexpos/workdir/stages/stage16/int6.xsm
+load --os /home/expos/myexpos/workdir/stages/stage17/OS17.xsm
+load --init /home/expos/myexpos/workdir/stages/stage17/shell.xsm
+load --module 0 ../workdir/stages/stage18/MOD_0(Resource).xsm
+load --module 4 ../workdir/stages/stage18/MOD_4(Device).xsm    
+load --int=disk ../workdir/stages/stage18/INT_2(Disk).xsm
+load --module 7 ../workdir/stages/stage19/MOD_7(boot).xsm
+load --module 1 ../workdir/stages/stage19/MOD_1.xsm      
+load --module 2 ../workdir/stages/stage19/MOD_2.xsm
+load --exhandler ../workdir/stages/stage19/exhandler.xsm
+load --int=9 ../workdir/stages/stage19/newINT9(Exec).xsm

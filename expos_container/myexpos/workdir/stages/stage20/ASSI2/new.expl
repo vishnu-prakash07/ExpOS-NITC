@@ -1,0 +1,36 @@
+pid = exposcall("Fork");
+if(pid == 0) then
+    // CHILD PROCESS (Odd Numbers: 1, 3, 5...)
+    p = head;
+    id = exposcall("Getppid"); // We will signal the Parent
+    while(p != null) do
+        temp = exposcall("Write", -2, p.data);
+        
+        // 1. Signal the Parent to wake up
+        temp = exposcall("Signal"); 
+        
+        p = p.next;
+        if(p == null) then break; endif;
+        p = p.next; // Move to next odd
+        
+        // 2. Wait for Parent to finish printing the even number
+        temp = exposcall("Wait", id); 
+    endwhile;
+else
+    // PARENT PROCESS (Even Numbers: 2, 4, 6...)
+    q = head.next;
+    // pid here is already the Child's PID
+    while(q != null) do
+        // 1. Wait for Child to print the odd number first
+        temp = exposcall("Wait", pid); 
+        
+        temp = exposcall("Write", -2, q.data);
+        
+        // 2. Signal the Child to wake up for the next odd
+        temp = exposcall("Signal"); 
+        
+        q = q.next;
+        if(q == null) then break; endif;
+        q = q.next; // Move to next even
+    endwhile;
+endif;

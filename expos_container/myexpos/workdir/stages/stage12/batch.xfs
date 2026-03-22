@@ -1,0 +1,7 @@
+fdisk
+load --int=7 /home/expos/myexpos/workdir/stages/stage10/int7.xsm
+load --library /home/expos/myexpos/expl/library.lib
+load --int=timer /home/expos/myexpos/workdir/stages/stage12/int_timerAssi.xsm
+load --idle /home/expos/myexpos/workdir/stages/stage12/idle_Assi.xsm
+load --os /home/expos/myexpos/workdir/stages/stage12/os_startup_stage12.xsm
+load --init /home/expos/myexpos/workdir/stages/stage12/numbers100.xsm

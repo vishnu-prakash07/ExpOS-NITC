@@ -1,0 +1,11 @@
+int main () {
+    decl
+        int temp, pid;
+    enddecl
+    begin
+        pid = exposcall("Fork");
+        temp=exposcall("Write",-2,pid);
+        temp=exposcall("Write",-2,pid);
+        return 0;
+    end
+}

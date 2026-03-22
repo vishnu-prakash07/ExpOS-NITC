@@ -1,0 +1,5 @@
+load --int=11 ../workdir/stages/stage21/INT_11.xsm
+load --int=15 ../workdir/stages/stage21/INT_15(Shutdown).xsm
+load --module 1 ../workdir/stages/stage21/MOD_1.xsm
+load --module 7 ../workdir/stages/stage21/MOD_7(boot).xsm
+load --init ../workdir/stages/stage21/ASSI1/shell2.xsm

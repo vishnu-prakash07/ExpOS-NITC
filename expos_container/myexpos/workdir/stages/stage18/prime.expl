@@ -1,0 +1,41 @@
+decl
+	int isPrime(int num);
+enddecl
+
+int isPrime(int num)
+{
+decl
+	int a,flag;
+enddecl
+
+begin
+	a=2;
+	flag=1;
+	while(a<=(num/2))do
+		if((num%a) == 0)then
+			flag=0;
+			break;
+		endif;
+		a=a+1;
+	endwhile;
+	return flag;
+end
+}
+
+int main()
+{
+decl
+	int numb,temp;
+enddecl
+
+begin
+	numb=2;
+	while(numb<=100)do
+		if(isPrime(numb)==1)then
+			temp=exposcall("Write",-2,numb);
+		endif;
+		numb=numb+1;
+	endwhile;
+	return 0;
+end
+}

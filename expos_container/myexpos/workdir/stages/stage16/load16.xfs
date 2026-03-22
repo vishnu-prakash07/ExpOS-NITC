@@ -1,0 +1,6 @@
+load --int=console /home/expos/myexpos/workdir/stages/stage16/console_int.xsm
+load --int=6 /home/expos/myexpos/workdir/stages/stage16/int6.xsm
+load --module 0 /home/expos/myexpos/workdir/stages/stage16/mod0_ResourceManager.xsm
+load --module 4 /home/expos/myexpos/workdir/stages/stage16/mod4_deviceManager.xsm
+load --module 7 /home/expos/myexpos/workdir/stages/stage16/module_7.xsm
+load --init /home/expos/myexpos/workdir/stages/stage16/init.xsm

@@ -1,0 +1,1 @@
+load helloworld.xsm as os startup and run it.

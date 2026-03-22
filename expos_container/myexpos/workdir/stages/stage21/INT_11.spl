@@ -1,0 +1,56 @@
+alias userSP R0;
+userSP = SP ;
+
+[PROCESS_TABLE+[SYSTEM_STATUS_TABLE+1]*16+13] = SP; //saving user stack pointer to 
+SP = [PROCESS_TABLE+[SYSTEM_STATUS_TABLE+1]*16+11] * 512 - 1 ; // switching to kernel stack
+
+alias syscallNumber R1;
+syscallNumber = [[PTBR + 2*((userSP-5)/512)] *512 + ((userSP - 5) % 512)]; //retrieving syscall number from stack(pushed as argument before!)
+
+[PROCESS_TABLE+[SYSTEM_STATUS_TABLE+1] * 16 + 9 ] = syscallNumber; //setting the mode flag
+
+if ( syscallNumber == 11 ) then  //getPID
+    [[PTBR + 2 * ((userSP - 1) / 512)] * 512 + ((userSP - 1) % 512)] = [SYSTEM_STATUS_TABLE + 1];
+endif;
+
+if ( syscallNumber == 12 ) then //getPPID
+    [[PTBR + 2 * ((userSP - 1) / 512)] * 512 + ((userSP - 1) % 512)] = [PROCESS_TABLE+[SYSTEM_STATUS_TABLE + 1]*16+ 2 ];
+endif;
+
+if ( syscallNumber == 13 ) then //wait
+    alias pid R2;
+    pid = [[PTBR + 2 * ((userSP - 4) / 512)] * 512 + ((userSP - 4) % 512)];
+
+    if (([SYSTEM_STATUS_TABLE+1] == pid) || ([PROCESS_TABLE+pid*16+4] == TERMINATED) || (pid < 0) || (pid >= 16)) then
+        [[PTBR + 2 * ((userSP - 1) / 512)] * 512 + ((userSP - 1) % 512)] = -1;
+    else
+        [PROCESS_TABLE + [SYSTEM_STATUS_TABLE] * 16 + 4] = WAIT_PROCESS;
+        [PROCESS_TABLE + [SYSTEM_STATUS_TABLE] * 16 + 5] = pid;
+
+        multipush(R0,R1,R2);
+        call MOD_5;
+        multipop(R0,R1,R2);
+
+        [[PTBR + 2 * ((userSP - 1) / 512)] * 512 + ((userSP - 1) % 512)] = 0; // return 0 for success
+    endif;
+endif;
+
+if ( syscallNumber == 14) then //signal
+    alias i R2;
+    i=0;
+
+    while (i < 16) do   
+        if (([PROCESS_TABLE + i * 16 + 4] == WAIT_PROCESS) &&  ([PROCESS_TABLE + i * 16 + 5] == [SYSTEM_STATUS_TABLE+1])) then
+            [PROCESS_TABLE + i * 16 + 4] = READY;
+            [PROCESS_TABLE + i * 16 + 5] = -1;
+        endif;
+        i=i+1;
+    endwhile;
+endif;
+
+SP=userSP;
+
+[PROCESS_TABLE + [SYSTEM_STATUS_TABLE+1] * 16 + 9] = 0;
+
+ireturn;
+

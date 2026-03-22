@@ -1,0 +1,11 @@
+[PROCESS_TABLE+[SYSTEM_STATUS_TABLE+1]*16+9]=10; //exit system call number in mode flag
+
+[PROCESS_TABLE+[SYSTEM_STATUS_TABLE+1]*16+13]=SP;
+
+SP=[PROCESS_TABLE+[SYSTEM_STATUS_TABLE+1]*16+11]*512-1;
+
+R1=3; //exit process 
+R2=[SYSTEM_STATUS_TABLE+1]; //pid
+call MOD_1; //process manager
+
+call MOD_5;

@@ -1,0 +1,19 @@
+decl
+    str username;
+    int temp;
+enddecl
+
+int main() {
+    begin
+        temp = exposcall("Write", -2, "Enter Name:");
+        temp = exposcall("Read", -1, username);
+
+        if (username == "Admin") then
+            temp = exposcall("Write", -2, "Access Granted");
+        else
+            temp = exposcall("Write", -2, "Access Denied");
+        endif;
+
+        return 0;
+    end
+}

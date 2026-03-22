@@ -1,0 +1,17 @@
+load --os ../workdir/stages/stage20/os_startup_module.xsm
+load --library ../expl/library.lib
+load --int=6 /home/expos/myexpos/workdir/stages/stage16/int6.xsm
+load --int=7 /home/expos/myexpos/workdir/stages/stage15/int7.xsm 
+load --int=9 ../workdir/stages/stage19/newINT9(Exec).xsm
+load --int=8 ../workdir/stages/stage20/fork.xsm
+load --int=10 ../workdir/stages/stage20/exit.xsm
+load --int=timer /home/expos/myexpos/workdir/stages/stage15/timer.xsm
+load --int=console /home/expos/myexpos/workdir/stages/stage16/console_int.xsm
+load --int=disk ../workdir/stages/stage_20/disk_interrupt_handler.xsm
+load --module 0 ../workdir/stages/stage18/MOD_0(Resource).xsm
+load --module 1 ../workdir/stages/stage20/MOD_1.xsm
+load --module 2 ../workdir/stages/stage20/mod2.xsm
+load --module 4 ../workdir/stages/stage18/MOD_4(Device).xsm 
+load --module 5 ../workdir/stages/stage20/scheduler.xsm
+load --module 7 ../workdir/stages/stage20/MOD_7(boot).xsm
+load --exhandler ../workdir/stages/stage_20/exception.xsm

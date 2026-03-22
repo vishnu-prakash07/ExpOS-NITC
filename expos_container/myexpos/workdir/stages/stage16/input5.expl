@@ -1,0 +1,31 @@
+decl
+    int arr[25];
+enddecl
+
+int main() {
+    decl
+        int n, temp, i;
+    enddecl
+
+    begin
+        temp = exposcall("Write", -2, "Enter N(5):");
+        temp = exposcall("Read", -1, n);
+
+    
+        temp = exposcall("Write", -2, "Enter digits(5):");
+        i = 0;
+        while (i < n) do
+            temp = exposcall("Read", -1, arr[i]);
+            i = i + 1;
+        endwhile;
+
+        temp = exposcall("Write", -2, "ArrayInput:");
+        i = 0;
+        while(i < n) do
+            temp = exposcall("Write", -2, arr[i]);
+            i = i + 1;
+        endwhile;
+
+        return 0;
+    end
+}

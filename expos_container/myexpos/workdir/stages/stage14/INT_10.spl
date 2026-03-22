@@ -1,0 +1,18 @@
+[PROCESS_TABLE + ([SYSTEM_STATUS_TABLE + 1]*16) + 4] = TERMINATED;
+alias pid R0;
+alias flag R1;
+pid=1;
+flag=0;
+while(pid<16)do
+	if([PROCESS_TABLE + (pid*16) + 4]!=TERMINATED)then
+		flag=1;
+		break;
+	endif;
+	pid=pid+1;
+endwhile;
+
+if(flag==0)then
+	halt;
+else
+	call SCHEDULER;
+endif;
