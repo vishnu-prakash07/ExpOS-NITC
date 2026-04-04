@@ -1,0 +1,107 @@
+alias functionNum R1;
+alias currentPID R2;
+alias word R3;
+
+if (functionNum == 1) then //disk store
+    alias pageNumber R3;
+    alias blockNum R4;
+
+    multipush(R1, R2, R3, R4);
+    R1 = 3; //locking disk by acquire disk function
+    call RESOURCE_MANAGER;//MOD_0
+    multipop(R1, R2, R3, R4);
+
+    [DISK_STATUS_TABLE + 1] = 1;
+    [DISK_STATUS_TABLE + 2] = pageNumber;
+    [DISK_STATUS_TABLE + 3] = blockNum;
+
+    store(pageNumber, blockNum); 
+
+    [PROCESS_TABLE + currentPID * 16 + 4] = WAIT_DISK; //after completion of store disk interrupt will occur and its state will changed to READY in that itself!
+    multipush(R1, R2, R3, R4);
+    call SCHEDULER;
+    multipop(R1, R2, R3, R4);
+    return;
+endif;
+
+// Disk Load
+if (functionNum == 2) then
+    alias memoryPage R3;
+    alias diskBlock R4;
+    multipush(R1, R2, R3, R4);
+
+    R1 = 3;
+    R2 = currentPID;
+    call MOD_0;
+
+    multipop(R1, R2, R3, R4);
+
+    [DISK_STATUS_TABLE + 1] = 0;
+    [DISK_STATUS_TABLE + 2] = memoryPage;
+    [DISK_STATUS_TABLE + 3] = diskBlock;
+
+    load(memoryPage, diskBlock);
+    
+    [PROCESS_TABLE + currentPID * 16 + 4] = WAIT_DISK;
+
+    call MOD_5;
+
+    return;
+endif;
+
+if (functionNum == 3) then
+
+    //calling write (acquriing)
+
+    multipush(R1, R2, R3);
+
+    functionNum = 8;
+    currentPID = [SYSTEM_STATUS_TABLE+1];
+
+    call MOD_0; //Resource_Manager
+
+    multipop(R1, R2, R3);
+
+    print word;
+
+    multipush(R1, R2, R3);
+
+    functionNum = 9;
+
+    call MOD_0;
+
+    multipop(R1, R2, R3);
+
+    return;
+endif;
+
+if (functionNum == 4) then
+    //Calling read by acquiring
+
+    multipush ( R1, R2, R3);
+
+    functionNum = 8;
+    currentPID = [SYSTEM_STATUS_TABLE + 1];
+
+    call MOD_0; //Resource_Manager
+
+    multipop ( R1, R2, R3);
+
+    read;
+
+    [PROCESS_TABLE + currentPID * 16 + 4 ] = WAIT_TERMINAL;
+
+    // Invoking the Context Switch Module
+
+    multipush ( R1, R2, R3);
+
+    call MOD_5;
+
+    //after returning from the scheduler
+
+    multipop ( R1, R2, R3);
+
+    [ [PTBR + 2 * word/512] * 512 + word % 512 ] = [PROCESS_TABLE + currentPID * 16 + 8];
+
+    return;
+endif;

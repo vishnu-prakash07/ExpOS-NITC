@@ -18,21 +18,16 @@ if ( syscallNumber == 12 ) then //getPPID
 endif;
 
 if ( syscallNumber == 13 ) then //wait
-    alias pid R2;
-    pid = [[PTBR + 2 * ((userSP - 4) / 512)] * 512 + ((userSP - 4) % 512)];
+    //alias pid R2;
+    //pid = [[PTBR + 2 * ((userSP - 4) / 512)] * 512 + ((userSP - 4) % 512)];
 
-    if (([SYSTEM_STATUS_TABLE+1] == pid) || ([PROCESS_TABLE+pid*16+4] == TERMINATED) || (pid < 0) || (pid >= 16)) then
-        [[PTBR + 2 * ((userSP - 1) / 512)] * 512 + ((userSP - 1) % 512)] = -1;
-    else
         [PROCESS_TABLE + [SYSTEM_STATUS_TABLE+1] * 16 + 4] = WAIT_PROCESS;
-        [PROCESS_TABLE + [SYSTEM_STATUS_TABLE+1] * 16 + 5] = pid;
 
         multipush(R0,R1,R2);
         call MOD_5;
         multipop(R0,R1,R2);
 
         [[PTBR + 2 * ((userSP - 1) / 512)] * 512 + ((userSP - 1) % 512)] = 0; // return 0 for success
-    endif;
 endif;
 
 if ( syscallNumber == 14) then //signal

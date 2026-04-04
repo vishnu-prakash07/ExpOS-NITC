@@ -1,0 +1,7 @@
+load --module 7 ../workdir/stages/stage24/MOD_7(boot).xsm
+load --module 0 ../workdir/stages/stage24/MOD_0(Resource).xsm
+load --module 1 ../workdir/stages/stage24/MOD_1.xsm          
+load --module 3 ../workdir/stages/stage24/MOD_3(file_manager).xsm
+load --int=8 ../workdir/stages/stage24/fork.xsm 
+load --int=5 ../workdir/stages/stage24/INT5.xsm
+load --int=6 ../workdir/stages/stage24/INT6.xsm

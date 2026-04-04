@@ -1,0 +1,6 @@
+load --module 7 ../workdir/stages/stage23/MOD_7(boot).xsm
+load --module 0 ../workdir/stages/stage23/MOD_0(Resource).xsm
+load --module 4 ../workdir/stages/stage23/MOD_4(Device).xsm  
+load --int=4 ../workdir/stages/stage23/INT4.xsm            
+load --int=15 ../workdir/stages/stage23/INT15.xsm  
+load --init ../workdir/stages/stage23/shell2.xsm

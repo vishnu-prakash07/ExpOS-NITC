@@ -1,0 +1,7 @@
+load --module 7 ../workdir/stages/stage22/MOD_7(boot).xsm
+load --module 1 ../workdir/stages/stage22/MOD_1.xsm      
+load --module 0 ../workdir/stages/stage22/MOD_0(Resource).xsm
+load --int=8 ../workdir/stages/stage22/fork.xsm           
+load --int=13 ../workdir/stages/stage22/INT13.xsm
+load --int=14 ../workdir/stages/stage22/INT14.xsm
+load --init ../workdir/stages/stage22/Assi1/test4.xsm
